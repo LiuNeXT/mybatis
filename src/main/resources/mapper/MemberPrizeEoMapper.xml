@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.newteam.productdao.mapper.MemberPrizeEoMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.newteam.productdao.eo.MemberPrizeEo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+    <result column="check_level" property="checkLevel" jdbcType="TINYINT" />
+    <result column="registered_time" property="registeredTime" jdbcType="TIMESTAMP" />
+    <result column="qualify_period" property="qualifyPeriod" jdbcType="INTEGER" />
+    <result column="award_state" property="awardState" jdbcType="TINYINT" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="expired_time" property="expiredTime" jdbcType="TIMESTAMP" />
+    <result column="award_time" property="awardTime" jdbcType="TIMESTAMP" />
+    <result column="award_period" property="awardPeriod" jdbcType="INTEGER" />
+    <result column="award_type" property="awardType" jdbcType="TINYINT" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="point" property="point" jdbcType="DECIMAL" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from member_prize
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.com.newteam.productdao.eo.MemberPrizeEo" useGeneratedKeys="true" keyProperty="id" >
+    insert into member_prize (number, member_name, check_level, 
+      registered_time, qualify_period, award_state, 
+      created_time, expired_time, award_time, 
+      award_period, award_type, order_id, 
+      point)
+    values (#{number,jdbcType=VARCHAR}, #{memberName,jdbcType=VARCHAR}, #{checkLevel,jdbcType=TINYINT}, 
+      #{registeredTime,jdbcType=TIMESTAMP}, #{qualifyPeriod,jdbcType=INTEGER}, #{awardState,jdbcType=TINYINT}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{expiredTime,jdbcType=TIMESTAMP}, #{awardTime,jdbcType=TIMESTAMP}, 
+      #{awardPeriod,jdbcType=INTEGER}, #{awardType,jdbcType=TINYINT}, #{orderId,jdbcType=VARCHAR}, 
+      #{point,jdbcType=DECIMAL})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.com.newteam.productdao.eo.MemberPrizeEo" >
+    update member_prize
+    set number = #{number,jdbcType=VARCHAR},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      check_level = #{checkLevel,jdbcType=TINYINT},
+      registered_time = #{registeredTime,jdbcType=TIMESTAMP},
+      qualify_period = #{qualifyPeriod,jdbcType=INTEGER},
+      award_state = #{awardState,jdbcType=TINYINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      expired_time = #{expiredTime,jdbcType=TIMESTAMP},
+      award_time = #{awardTime,jdbcType=TIMESTAMP},
+      award_period = #{awardPeriod,jdbcType=INTEGER},
+      award_type = #{awardType,jdbcType=TINYINT},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      point = #{point,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, number, member_name, check_level, registered_time, qualify_period, award_state, 
+    created_time, expired_time, award_time, award_period, award_type, order_id, point
+    from member_prize
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, number, member_name, check_level, registered_time, qualify_period, award_state, 
+    created_time, expired_time, award_time, award_period, award_type, order_id, point
+    from member_prize
+  </select>
+</mapper>
